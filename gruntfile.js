@@ -55,12 +55,18 @@ module.exports = function (grunt) {
       dynamic: {
         files: [{
           expand: true,
-          cwd:'src/assets/img/',
+          cwd: 'src/assets/img/',
           src: ['**/*.{png,jpg,gif}'],
           dest: 'assets/img/'
         }]
       }
-    }
+    },
+    watch: {
+      scripts: {
+        files: ['src/assets/js/*.js', 'src/assets/css/*.css','src/*.html'],
+        tasks: ['default']
+      }
+    },
   });
 
   // ===========================================================================
@@ -71,10 +77,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
 
   // Register Task
   grunt.registerTask('concat-js', ['concat:js']);
   grunt.registerTask('concat-css', ['concat:css']);
-  grunt.registerTask('default', ['uglify','cssmin','htmlmin','imagemin']);
+  grunt.registerTask('default', ['uglify', 'cssmin', 'htmlmin', 'imagemin']);
 };

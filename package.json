@@ -23,10 +23,8 @@
     "grunt-contrib-htmlmin": "^3.0.0",
     "grunt-contrib-imagemin": "^3.0.0",
     "grunt-contrib-jshint": "latest",
-    "grunt-contrib-less": "latest",
     "grunt-contrib-uglify": "latest",
-    "grunt-contrib-watch": "latest",
-    "jshint-stylish": "latest"
+    "grunt-contrib-watch": "^1.1.0"
   },
   "dependencies": {}
 }

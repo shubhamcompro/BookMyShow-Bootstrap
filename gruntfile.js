@@ -1,5 +1,6 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
+
 module.exports = function (grunt) {
 
   // ===========================================================================
@@ -14,12 +15,12 @@ module.exports = function (grunt) {
     // all of our configuration will go here
     concat: {
       js: {
-        src: ['src/js/*.js'],
-        dest: 'dist/js/script.js'
+        src: ['src/assets/js/*.js'],
+        dest: 'assets/js/script.js'
       },
       css: {
-        src: ['css/*.css'],
-        dest: 'dist/css/style.css'
+        src: ['src/assets/css/*.css'],
+        dest: 'assets/css/style.css'
       }
     },
     uglify: {
@@ -28,14 +29,14 @@ module.exports = function (grunt) {
       },
       my_target: {
         files: {
-          'dist/js/main.js': ['src/js/main.js'],
+          'assets/js/main.js': ['src/assets/js/main.js'],
         }
       },
     },
     cssmin: {
       target: {
         files: [{
-          'dist/css/style.css': ['src/css/style.css']
+          'assets/css/style.css': ['src/assets/css/style.css']
         }]
       }
     },
@@ -46,8 +47,18 @@ module.exports = function (grunt) {
           collapseWhitespace: true
         },
         files: {                                   // Dictionary of files
-          'dist/home.html': 'src/home.html',     // 'destination': 'source'
+          'home.html': 'src/home.html',     // 'destination': 'source'
         }
+      }
+    },
+    imagemin: {
+      dynamic: {
+        files: [{
+          expand: true,
+          cwd:'src/assets/img/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'assets/img/'
+        }]
       }
     }
   });
@@ -59,10 +70,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
 
   // Register Task
   grunt.registerTask('concat-js', ['concat:js']);
   grunt.registerTask('concat-css', ['concat:css']);
-  grunt.registerTask('default', ['uglify','cssmin','htmlmin']);
+  grunt.registerTask('default', ['uglify','cssmin','htmlmin','imagemin']);
 };
